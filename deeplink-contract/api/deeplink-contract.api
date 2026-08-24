@@ -1,0 +1,25 @@
+public final class com/flute/terminal/deeplink/FluteDeeplinkContract {
+	public static final field ACTION_START_PAYMENT Ljava/lang/String;
+	public static final field COLUMN_SERIAL_NUMBER Ljava/lang/String;
+	public static final field EXTRA_NOTIFICATION_PAYLOAD Ljava/lang/String;
+	public static final field EXTRA_POS_TRANSACTION_ID Ljava/lang/String;
+	public static final field INSTANCE Lcom/flute/terminal/deeplink/FluteDeeplinkContract;
+	public static final field RESULT_AUTH_CODE Ljava/lang/String;
+	public static final field RESULT_ERROR_REASON Ljava/lang/String;
+	public static final field RESULT_MESSAGE Ljava/lang/String;
+	public static final field RESULT_POS_TRANSACTION_ID Ljava/lang/String;
+	public static final field RESULT_RECEIPT_DATA Ljava/lang/String;
+	public static final field RESULT_RESPONSE_CODE Ljava/lang/String;
+	public static final field RESULT_STATUS Ljava/lang/String;
+	public static final field RESULT_TRANSACTION_ID Ljava/lang/String;
+	public static final field SCHEME Ljava/lang/String;
+	public static final field STATUS_APPROVED Ljava/lang/String;
+	public static final field STATUS_DECLINED Ljava/lang/String;
+	public static final field STATUS_ERROR Ljava/lang/String;
+	public static final field TERMINAL_INFO_AUTHORITY Ljava/lang/String;
+	public static final field TERMINAL_INFO_PATH_SERIAL Ljava/lang/String;
+	public static final field TERMINAL_PACKAGE Ljava/lang/String;
+	public static final fun buildLaunchIntent (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+	public static final fun terminalInfoUri ()Landroid/net/Uri;
+}
+

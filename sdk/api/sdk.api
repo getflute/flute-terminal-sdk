@@ -1,0 +1,742 @@
+public final class com/flute/terminal/sdk/FluteLogLevel : java/lang/Enum {
+	public static final field DEBUG Lcom/flute/terminal/sdk/FluteLogLevel;
+	public static final field ERROR Lcom/flute/terminal/sdk/FluteLogLevel;
+	public static final field INFO Lcom/flute/terminal/sdk/FluteLogLevel;
+	public static final field WARN Lcom/flute/terminal/sdk/FluteLogLevel;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/FluteLogLevel;
+	public static fun values ()[Lcom/flute/terminal/sdk/FluteLogLevel;
+}
+
+public abstract interface class com/flute/terminal/sdk/FluteLogger {
+	public abstract fun log (Lcom/flute/terminal/sdk/FluteLogLevel;Ljava/lang/String;Ljava/lang/Throwable;)V
+}
+
+public final class com/flute/terminal/sdk/FluteTerminal {
+	public static final field INSTANCE Lcom/flute/terminal/sdk/FluteTerminal;
+	public static final fun adjustTip (Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun adjustTip (Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun adjustTip (Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static synthetic fun adjustTip$default (Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/callback/FluteCallback;ILjava/lang/Object;)V
+	public static final fun cancelPayment (Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun capture (Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun capture (Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static synthetic fun capture$default (Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/callback/FluteCallback;ILjava/lang/Object;)V
+	public static final fun checkPendingPayment (Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun deviceSerialNumber ()Ljava/lang/String;
+	public static final fun fetchPaymentConfig (Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun fetchTerminals (Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun getTransaction (Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun hasCredentials ()Z
+	public static final fun initialize (Landroid/content/Context;Lcom/flute/terminal/sdk/FluteTerminalConfig;)V
+	public static final fun initialize (Landroid/content/Context;Lcom/flute/terminal/sdk/FluteTerminalConfig;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static synthetic fun initialize$default (Landroid/content/Context;Lcom/flute/terminal/sdk/FluteTerminalConfig;Lcom/flute/terminal/sdk/callback/FluteCallback;ILjava/lang/Object;)V
+	public static final fun parseResult (Landroidx/activity/result/ActivityResult;)Lcom/flute/terminal/sdk/model/PaymentResult;
+	public static final fun pendingPosTransactionId ()Ljava/lang/String;
+	public static final fun printReceipt (Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun provisionCredentials (Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun provisionCredentials (Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static synthetic fun provisionCredentials$default (Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;ILjava/lang/Object;)V
+	public static final fun registerForPaymentResult (Landroidx/activity/ComponentActivity;Lcom/flute/terminal/sdk/callback/PaymentResultCallback;)Lcom/flute/terminal/sdk/FluteTerminalLauncher;
+	public static final fun reverseTransaction (Ljava/lang/String;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun reverseTransaction (Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static synthetic fun reverseTransaction$default (Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/callback/FluteCallback;ILjava/lang/Object;)V
+	public static final fun shareReceipt (Ljava/lang/String;Lcom/flute/terminal/sdk/model/ReceiptDeliveryMethod;Ljava/lang/String;ZLcom/flute/terminal/sdk/callback/FluteCallback;)V
+	public static final fun shutdown ()V
+}
+
+public final class com/flute/terminal/sdk/FluteTerminalConfig {
+	public fun <init> (Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLcom/flute/terminal/sdk/FluteLogger;J)V
+	public synthetic fun <init> (Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLcom/flute/terminal/sdk/FluteLogger;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Z
+	public final fun component8 ()Lcom/flute/terminal/sdk/FluteLogger;
+	public final fun component9 ()J
+	public final fun copy (Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLcom/flute/terminal/sdk/FluteLogger;J)Lcom/flute/terminal/sdk/FluteTerminalConfig;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/FluteTerminalConfig;Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLcom/flute/terminal/sdk/FluteLogger;JILjava/lang/Object;)Lcom/flute/terminal/sdk/FluteTerminalConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiBaseUrl ()Ljava/lang/String;
+	public final fun getApiBaseUrlOverride ()Ljava/lang/String;
+	public final fun getClientId ()Ljava/lang/String;
+	public final fun getClientSecret ()Ljava/lang/String;
+	public final fun getEnableHttpLogging ()Z
+	public final fun getEnvironment ()Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+	public final fun getIdentityBaseUrl ()Ljava/lang/String;
+	public final fun getIdentityBaseUrlOverride ()Ljava/lang/String;
+	public final fun getLogger ()Lcom/flute/terminal/sdk/FluteLogger;
+	public final fun getSerialNumber ()Ljava/lang/String;
+	public final fun getTerminalResultTimeoutSeconds ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/FluteTerminalConfig$Environment : java/lang/Enum {
+	public static final field DEV Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+	public static final field PRODUCTION Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+	public static final field SANDBOX Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+	public static final field UAT Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+	public final fun getApiBaseUrl ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getIdentityBaseUrl ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+	public static fun values ()[Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
+}
+
+public final class com/flute/terminal/sdk/FluteTerminalLauncher {
+	public final fun startPayment (Lcom/flute/terminal/sdk/model/PaymentRequest;)V
+	public final fun startRefund (Lcom/flute/terminal/sdk/model/RefundRequest;)V
+}
+
+public abstract interface class com/flute/terminal/sdk/callback/FluteCallback {
+	public abstract fun onComplete (Lcom/flute/terminal/sdk/callback/FluteResult;)V
+}
+
+public abstract class com/flute/terminal/sdk/callback/FluteResult {
+	public final fun onFailure (Lkotlin/jvm/functions/Function1;)Lcom/flute/terminal/sdk/callback/FluteResult;
+	public final fun onSuccess (Lkotlin/jvm/functions/Function1;)Lcom/flute/terminal/sdk/callback/FluteResult;
+}
+
+public final class com/flute/terminal/sdk/callback/FluteResult$Failure : com/flute/terminal/sdk/callback/FluteResult {
+	public fun <init> (Lcom/flute/terminal/sdk/exception/FluteTerminalException;)V
+	public final fun component1 ()Lcom/flute/terminal/sdk/exception/FluteTerminalException;
+	public final fun copy (Lcom/flute/terminal/sdk/exception/FluteTerminalException;)Lcom/flute/terminal/sdk/callback/FluteResult$Failure;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/callback/FluteResult$Failure;Lcom/flute/terminal/sdk/exception/FluteTerminalException;ILjava/lang/Object;)Lcom/flute/terminal/sdk/callback/FluteResult$Failure;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Lcom/flute/terminal/sdk/exception/FluteTerminalException;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/callback/FluteResult$Success : com/flute/terminal/sdk/callback/FluteResult {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/Object;)Lcom/flute/terminal/sdk/callback/FluteResult$Success;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/callback/FluteResult$Success;Ljava/lang/Object;ILjava/lang/Object;)Lcom/flute/terminal/sdk/callback/FluteResult$Success;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/flute/terminal/sdk/callback/PaymentResultCallback {
+	public abstract fun onResult (Lcom/flute/terminal/sdk/model/PaymentResult;)V
+}
+
+public final class com/flute/terminal/sdk/exception/ApiErrorDetails {
+	public fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/util/Map;
+	public final fun copy (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lcom/flute/terminal/sdk/exception/ApiErrorDetails;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/exception/ApiErrorDetails;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lcom/flute/terminal/sdk/exception/ApiErrorDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCause ()Ljava/lang/String;
+	public final fun getCorrelationId ()Ljava/lang/String;
+	public final fun getErrorCode ()Ljava/lang/String;
+	public final fun getFieldErrors ()Ljava/util/Map;
+	public final fun getHttpStatus ()I
+	public final fun getResolution ()Ljava/lang/String;
+	public final fun getSource ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun summary ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/exception/FluteApiException : com/flute/terminal/sdk/exception/FluteTerminalException {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/flute/terminal/sdk/exception/FluteAuthenticationException : com/flute/terminal/sdk/exception/FluteTerminalException {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public abstract class com/flute/terminal/sdk/exception/FluteTerminalException : java/lang/RuntimeException {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDetails ()Lcom/flute/terminal/sdk/exception/ApiErrorDetails;
+}
+
+public final class com/flute/terminal/sdk/exception/FluteTerminalNotInitializedException : com/flute/terminal/sdk/exception/FluteTerminalException {
+	public fun <init> ()V
+}
+
+public final class com/flute/terminal/sdk/exception/InvalidPaymentParametersException : com/flute/terminal/sdk/exception/FluteTerminalException {
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public final class com/flute/terminal/sdk/exception/PosTransactionCreationException : com/flute/terminal/sdk/exception/FluteTerminalException {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lcom/flute/terminal/sdk/exception/ApiErrorDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/flute/terminal/sdk/exception/RegistrationLifecycleException : com/flute/terminal/sdk/exception/FluteTerminalException {
+	public fun <init> (Ljava/lang/Throwable;)V
+}
+
+public final class com/flute/terminal/sdk/model/AmountBreakdown {
+	public fun <init> (Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;)V
+	public final fun component1 ()Ljava/math/BigDecimal;
+	public final fun component2 ()Ljava/math/BigDecimal;
+	public final fun component3 ()Ljava/math/BigDecimal;
+	public final fun component4 ()Ljava/math/BigDecimal;
+	public final fun component5 ()Ljava/math/BigDecimal;
+	public final fun component6 ()Ljava/math/BigDecimal;
+	public final fun component7 ()Ljava/math/BigDecimal;
+	public final fun component8 ()Ljava/math/BigDecimal;
+	public final fun copy (Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;)Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/AmountBreakdown;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBaseAmount ()Ljava/math/BigDecimal;
+	public final fun getDiscountAmount ()Ljava/math/BigDecimal;
+	public final fun getDiscountRate ()Ljava/math/BigDecimal;
+	public final fun getSurchargeAmount ()Ljava/math/BigDecimal;
+	public final fun getSurchargeRate ()Ljava/math/BigDecimal;
+	public final fun getTipAmount ()Ljava/math/BigDecimal;
+	public final fun getTipRate ()Ljava/math/BigDecimal;
+	public final fun getTotalAmount ()Ljava/math/BigDecimal;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/AvsResult {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/AvsResult;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/AvsResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAction ()Ljava/lang/String;
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getResponseCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/CalculatedAmounts {
+	public static final field Companion Lcom/flute/terminal/sdk/model/CalculatedAmounts$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun component4 ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun component5 ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun component6 ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;)Lcom/flute/terminal/sdk/model/CalculatedAmounts;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/CalculatedAmounts;Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;Lcom/flute/terminal/sdk/model/TenderAmount;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/CalculatedAmounts;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAch ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun getCash ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun getCreditCard ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun getCurrencyCode ()Ljava/lang/String;
+	public final fun getDebitCard ()Lcom/flute/terminal/sdk/model/TenderAmount;
+	public final fun getZeroCostOption ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/CalculatedAmounts$Companion {
+	public final fun flat (Ljava/math/BigDecimal;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/CalculatedAmounts;
+}
+
+public final class com/flute/terminal/sdk/model/CaptureMethod : java/lang/Enum {
+	public static final field AUTO Lcom/flute/terminal/sdk/model/CaptureMethod;
+	public static final field MANUAL Lcom/flute/terminal/sdk/model/CaptureMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/CaptureMethod;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/CaptureMethod;
+}
+
+public final class com/flute/terminal/sdk/model/CardInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/CardInfo;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/CardInfo;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/CardInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBrand ()Ljava/lang/String;
+	public final fun getCardType ()Ljava/lang/String;
+	public final fun getCardholderVerificationMethod ()Ljava/lang/String;
+	public final fun getEntryMode ()Ljava/lang/String;
+	public final fun getMaskedPan ()Ljava/lang/String;
+	public final fun getProcessedAsType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/ErrorReason : java/lang/Enum {
+	public static final field ALREADY_IN_PROGRESS Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field APP_NOT_INSTALLED Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field AUTHENTICATION_FAILED Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field MALFORMED_RESPONSE Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field NOT_INITIALIZED Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field TERMINAL_FAILED Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field TIMEOUT Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field TRANSACTION_CREATION_FAILED Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field UNAUTHORIZED_CALLER Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field UNKNOWN Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static final field USER_CANCELLED Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/ErrorReason;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/ErrorReason;
+}
+
+public final class com/flute/terminal/sdk/model/LinkedTransactionOutcome {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/math/BigDecimal;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/math/BigDecimal;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public final fun component11 ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun component12 ()Ljava/math/BigDecimal;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/math/BigDecimal;
+	public final fun component8 ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun component9 ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/math/BigDecimal;)Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/math/BigDecimal;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAmounts ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun getAvailableRefundAmount ()Ljava/math/BigDecimal;
+	public final fun getAvs ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun getCard ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun getProcessedAmount ()Ljava/math/BigDecimal;
+	public final fun getProcessor ()Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public final fun getReferenceId ()Ljava/lang/String;
+	public final fun getResponseCode ()Ljava/lang/String;
+	public final fun getResponseMessage ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getTransactionDateTime ()Ljava/lang/String;
+	public final fun getTransactionType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isApproved ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PaymentConfig {
+	public fun <init> (Ljava/lang/String;Lcom/flute/terminal/sdk/model/ZeroCostOption;Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Lcom/flute/terminal/sdk/model/ZeroCostOption;Ljava/lang/String;Ljava/util/List;)Lcom/flute/terminal/sdk/model/PaymentConfig;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PaymentConfig;Ljava/lang/String;Lcom/flute/terminal/sdk/model/ZeroCostOption;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PaymentConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrencyCode ()Ljava/lang/String;
+	public final fun getDefaultProcessorId ()Ljava/lang/String;
+	public final fun getProcessorIds ()Ljava/util/List;
+	public final fun getRequiresPricingType ()Z
+	public final fun getZeroCostOption ()Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PaymentRequest {
+	public fun <init> (Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/PricingType;Lcom/flute/terminal/sdk/model/CaptureMethod;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Z)V
+	public synthetic fun <init> (Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/PricingType;Lcom/flute/terminal/sdk/model/CaptureMethod;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/math/BigDecimal;
+	public final fun component10 ()Ljava/math/BigDecimal;
+	public final fun component11 ()Z
+	public final fun component2 ()Lcom/flute/terminal/sdk/model/PricingType;
+	public final fun component3 ()Lcom/flute/terminal/sdk/model/CaptureMethod;
+	public final fun component4 ()Lcom/flute/terminal/sdk/model/ReadingMethod;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/math/BigDecimal;
+	public final fun copy (Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/PricingType;Lcom/flute/terminal/sdk/model/CaptureMethod;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Z)Lcom/flute/terminal/sdk/model/PaymentRequest;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PaymentRequest;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/PricingType;Lcom/flute/terminal/sdk/model/CaptureMethod;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;ZILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PaymentRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBaseAmount ()Ljava/math/BigDecimal;
+	public final fun getCaptureMethod ()Lcom/flute/terminal/sdk/model/CaptureMethod;
+	public final fun getCustomerId ()Ljava/lang/String;
+	public final fun getPaymentProcessorId ()Ljava/lang/String;
+	public final fun getPosDeviceId ()Ljava/lang/String;
+	public final fun getPricingType ()Lcom/flute/terminal/sdk/model/PricingType;
+	public final fun getReadingMethod ()Lcom/flute/terminal/sdk/model/ReadingMethod;
+	public final fun getReferenceId ()Ljava/lang/String;
+	public final fun getRequestPaymentMethodStorageConsent ()Z
+	public final fun getTipAmount ()Ljava/math/BigDecimal;
+	public final fun getTipRatePercent ()Ljava/math/BigDecimal;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PaymentRequest$Builder {
+	public fun <init> (Ljava/math/BigDecimal;)V
+	public final fun build ()Lcom/flute/terminal/sdk/model/PaymentRequest;
+	public final fun captureMethod (Lcom/flute/terminal/sdk/model/CaptureMethod;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun customerId (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun paymentProcessorId (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun posDeviceId (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun pricingType (Lcom/flute/terminal/sdk/model/PricingType;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun readingMethod (Lcom/flute/terminal/sdk/model/ReadingMethod;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun referenceId (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun requestPaymentMethodStorageConsent (Z)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun tipAmount (Ljava/math/BigDecimal;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+	public final fun tipRatePercent (Ljava/math/BigDecimal;)Lcom/flute/terminal/sdk/model/PaymentRequest$Builder;
+}
+
+public abstract class com/flute/terminal/sdk/model/PaymentResult {
+}
+
+public final class com/flute/terminal/sdk/model/PaymentResult$Approved : com/flute/terminal/sdk/model/PaymentResult {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/math/BigDecimal;
+	public final fun component14 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/math/BigDecimal;
+	public final fun component7 ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun component8 ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun component9 ()Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PaymentResult$Approved;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PaymentResult$Approved;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PaymentResult$Approved;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAmounts ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun getAuthCode ()Ljava/lang/String;
+	public final fun getAvailableRefundAmount ()Ljava/math/BigDecimal;
+	public final fun getAvs ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun getCard ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun getGatewayReferenceId ()Ljava/lang/String;
+	public final fun getPosTransactionId ()Ljava/lang/String;
+	public final fun getProcessedAmount ()Ljava/math/BigDecimal;
+	public final fun getProcessor ()Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public final fun getReceiptData ()Ljava/lang/String;
+	public final fun getResponseCode ()Ljava/lang/String;
+	public final fun getTransactionDateTime ()Ljava/lang/String;
+	public final fun getTransactionId ()Ljava/lang/String;
+	public final fun getTransactionType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PaymentResult$Declined : com/flute/terminal/sdk/model/PaymentResult {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/math/BigDecimal;
+	public final fun component6 ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun component7 ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun component8 ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PaymentResult$Declined;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PaymentResult$Declined;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PaymentResult$Declined;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAmounts ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun getAvs ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun getCard ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun getGatewayReferenceId ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getPosTransactionId ()Ljava/lang/String;
+	public final fun getProcessedAmount ()Ljava/math/BigDecimal;
+	public final fun getResponseCode ()Ljava/lang/String;
+	public final fun getTransactionDateTime ()Ljava/lang/String;
+	public final fun getTransactionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PaymentResult$Error : com/flute/terminal/sdk/model/PaymentResult {
+	public fun <init> (Lcom/flute/terminal/sdk/model/ErrorReason;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/flute/terminal/sdk/model/ErrorReason;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/flute/terminal/sdk/model/ErrorReason;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Lcom/flute/terminal/sdk/model/ErrorReason;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PaymentResult$Error;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PaymentResult$Error;Lcom/flute/terminal/sdk/model/ErrorReason;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PaymentResult$Error;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCorrelationId ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getPosTransactionId ()Ljava/lang/String;
+	public final fun getReason ()Lcom/flute/terminal/sdk/model/ErrorReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PendingPaymentCheck {
+	public static final field Companion Lcom/flute/terminal/sdk/model/PendingPaymentCheck$Companion;
+	public fun <init> (ZZLcom/flute/terminal/sdk/model/PaymentResult;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Z
+	public final fun component3 ()Lcom/flute/terminal/sdk/model/PaymentResult;
+	public final fun copy (ZZLcom/flute/terminal/sdk/model/PaymentResult;)Lcom/flute/terminal/sdk/model/PendingPaymentCheck;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PendingPaymentCheck;ZZLcom/flute/terminal/sdk/model/PaymentResult;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PendingPaymentCheck;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHasPending ()Z
+	public final fun getResult ()Lcom/flute/terminal/sdk/model/PaymentResult;
+	public final fun getStillInProgress ()Z
+	public fun hashCode ()I
+	public static final fun none ()Lcom/flute/terminal/sdk/model/PendingPaymentCheck;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PendingPaymentCheck$Companion {
+	public final fun none ()Lcom/flute/terminal/sdk/model/PendingPaymentCheck;
+}
+
+public final class com/flute/terminal/sdk/model/PosTransactionDetails {
+	public fun <init> (Ljava/lang/String;Lcom/flute/terminal/sdk/model/PosTransactionStatus;Ljava/lang/String;Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;
+	public final fun copy (Ljava/lang/String;Lcom/flute/terminal/sdk/model/PosTransactionStatus;Ljava/lang/String;Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;)Lcom/flute/terminal/sdk/model/PosTransactionDetails;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PosTransactionDetails;Ljava/lang/String;Lcom/flute/terminal/sdk/model/PosTransactionStatus;Ljava/lang/String;Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PosTransactionDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLinkedOutcome ()Lcom/flute/terminal/sdk/model/LinkedTransactionOutcome;
+	public final fun getPosTransactionId ()Ljava/lang/String;
+	public final fun getStatus ()Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public final fun getTransactionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PosTransactionRef {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PosTransactionRef;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/PosTransactionRef;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/PosTransactionRef;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNotificationPayloadJson ()Ljava/lang/String;
+	public final fun getPosTransactionId ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getTerminalId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/PosTransactionStatus : java/lang/Enum {
+	public static final field CANCELLED Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public static final field COMPLETED Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public static final field FAILED Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public static final field IN_PROGRESS Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public static final field UNKNOWN Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/PosTransactionStatus;
+}
+
+public final class com/flute/terminal/sdk/model/PricingType : java/lang/Enum {
+	public static final field CARD Lcom/flute/terminal/sdk/model/PricingType;
+	public static final field CASH Lcom/flute/terminal/sdk/model/PricingType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/PricingType;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/PricingType;
+}
+
+public final class com/flute/terminal/sdk/model/ProcessorReferences {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/ProcessorReferences;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAuthCode ()Ljava/lang/String;
+	public final fun getMid ()Ljava/lang/String;
+	public final fun getRrn ()Ljava/lang/String;
+	public final fun getTid ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/ReadingMethod : java/lang/Enum {
+	public static final field KEYED_ENTRY Lcom/flute/terminal/sdk/model/ReadingMethod;
+	public static final field REGULAR Lcom/flute/terminal/sdk/model/ReadingMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/ReadingMethod;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/ReadingMethod;
+}
+
+public final class com/flute/terminal/sdk/model/ReceiptDeliveryMethod : java/lang/Enum {
+	public static final field SMS Lcom/flute/terminal/sdk/model/ReceiptDeliveryMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/ReceiptDeliveryMethod;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/ReceiptDeliveryMethod;
+}
+
+public final class com/flute/terminal/sdk/model/RefundRequest {
+	public fun <init> (Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/math/BigDecimal;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lcom/flute/terminal/sdk/model/ReadingMethod;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/RefundRequest;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/RefundRequest;Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;Lcom/flute/terminal/sdk/model/ReadingMethod;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/RefundRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCustomerId ()Ljava/lang/String;
+	public final fun getPaymentProcessorId ()Ljava/lang/String;
+	public final fun getPosDeviceId ()Ljava/lang/String;
+	public final fun getReadingMethod ()Lcom/flute/terminal/sdk/model/ReadingMethod;
+	public final fun getReferenceId ()Ljava/lang/String;
+	public final fun getRefundAmount ()Ljava/math/BigDecimal;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/RefundRequest$Builder {
+	public fun <init> (Ljava/math/BigDecimal;Ljava/lang/String;)V
+	public final fun build ()Lcom/flute/terminal/sdk/model/RefundRequest;
+	public final fun customerId (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/RefundRequest$Builder;
+	public final fun paymentProcessorId (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/RefundRequest$Builder;
+	public final fun readingMethod (Lcom/flute/terminal/sdk/model/ReadingMethod;)Lcom/flute/terminal/sdk/model/RefundRequest$Builder;
+	public final fun referenceId (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/RefundRequest$Builder;
+}
+
+public final class com/flute/terminal/sdk/model/TenderAmount {
+	public fun <init> (Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;)V
+	public final fun component1 ()Ljava/math/BigDecimal;
+	public final fun component2 ()Ljava/math/BigDecimal;
+	public final fun component3 ()Ljava/math/BigDecimal;
+	public final fun component4 ()Ljava/math/BigDecimal;
+	public final fun component5 ()Ljava/math/BigDecimal;
+	public final fun component6 ()Ljava/math/BigDecimal;
+	public final fun component7 ()Ljava/math/BigDecimal;
+	public final fun component8 ()Ljava/math/BigDecimal;
+	public final fun copy (Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;)Lcom/flute/terminal/sdk/model/TenderAmount;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/TenderAmount;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/math/BigDecimal;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/TenderAmount;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBaseAmount ()Ljava/math/BigDecimal;
+	public final fun getDiscountAmount ()Ljava/math/BigDecimal;
+	public final fun getDiscountRate ()Ljava/math/BigDecimal;
+	public final fun getSurchargeAmount ()Ljava/math/BigDecimal;
+	public final fun getSurchargeRate ()Ljava/math/BigDecimal;
+	public final fun getTipAmount ()Ljava/math/BigDecimal;
+	public final fun getTipRate ()Ljava/math/BigDecimal;
+	public final fun getTotalAmount ()Ljava/math/BigDecimal;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/TerminalInfo {
+	public fun <init> (Ljava/lang/String;Lcom/flute/terminal/sdk/model/TerminalMode;ZLjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/flute/terminal/sdk/model/TerminalMode;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/flute/terminal/sdk/model/TerminalMode;
+	public final fun component3 ()Z
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lcom/flute/terminal/sdk/model/TerminalMode;ZLjava/lang/String;)Lcom/flute/terminal/sdk/model/TerminalInfo;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/TerminalInfo;Ljava/lang/String;Lcom/flute/terminal/sdk/model/TerminalMode;ZLjava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/TerminalInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCanAcceptPosTransaction ()Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getMode ()Lcom/flute/terminal/sdk/model/TerminalMode;
+	public final fun getSerialNumber ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isOnline ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/TerminalMode : java/lang/Enum {
+	public static final field HYBRID Lcom/flute/terminal/sdk/model/TerminalMode;
+	public static final field SEMI_INTEGRATED Lcom/flute/terminal/sdk/model/TerminalMode;
+	public static final field STANDALONE Lcom/flute/terminal/sdk/model/TerminalMode;
+	public static final field UNKNOWN Lcom/flute/terminal/sdk/model/TerminalMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/TerminalMode;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/TerminalMode;
+}
+
+public final class com/flute/terminal/sdk/model/Transaction {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/lang/String;
+	public final fun component14 ()Ljava/math/BigDecimal;
+	public final fun component15 ()Ljava/math/BigDecimal;
+	public final fun component16 ()Ljava/lang/String;
+	public final fun component17 ()Ljava/lang/String;
+	public final fun component18 ()Ljava/lang/String;
+	public final fun component19 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/math/BigDecimal;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun component7 ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun component8 ()Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public final fun component9 ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/flute/terminal/sdk/model/Transaction;
+	public static synthetic fun copy$default (Lcom/flute/terminal/sdk/model/Transaction;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/lang/String;Lcom/flute/terminal/sdk/model/AmountBreakdown;Lcom/flute/terminal/sdk/model/CardInfo;Lcom/flute/terminal/sdk/model/ProcessorReferences;Lcom/flute/terminal/sdk/model/AvsResult;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/math/BigDecimal;Ljava/math/BigDecimal;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/flute/terminal/sdk/model/Transaction;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAmounts ()Lcom/flute/terminal/sdk/model/AmountBreakdown;
+	public final fun getAvailableRefundAmount ()Ljava/math/BigDecimal;
+	public final fun getAvs ()Lcom/flute/terminal/sdk/model/AvsResult;
+	public final fun getBatchId ()Ljava/lang/String;
+	public final fun getCard ()Lcom/flute/terminal/sdk/model/CardInfo;
+	public final fun getCurrencyCode ()Ljava/lang/String;
+	public final fun getCustomerId ()Ljava/lang/String;
+	public final fun getDeclineCode ()Ljava/lang/String;
+	public final fun getDeclineMessage ()Ljava/lang/String;
+	public final fun getOriginalTransactionId ()Ljava/lang/String;
+	public final fun getPaymentMethodType ()Ljava/lang/String;
+	public final fun getPaymentProcessorId ()Ljava/lang/String;
+	public final fun getProcessedAmount ()Ljava/math/BigDecimal;
+	public final fun getProcessor ()Lcom/flute/terminal/sdk/model/ProcessorReferences;
+	public final fun getReferenceId ()Ljava/lang/String;
+	public final fun getRefundedAmount ()Ljava/math/BigDecimal;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getTransactionDateTime ()Ljava/lang/String;
+	public final fun getTransactionId ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isApproved ()Z
+	public final fun isFullyRefunded ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/flute/terminal/sdk/model/ZeroCostOption : java/lang/Enum {
+	public static final field CASH_DISCOUNT Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public static final field DUAL_PRICING Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public static final field NONE Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public static final field SURCHARGE Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public static final field UNKNOWN Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/flute/terminal/sdk/model/ZeroCostOption;
+	public static fun values ()[Lcom/flute/terminal/sdk/model/ZeroCostOption;
+}
+

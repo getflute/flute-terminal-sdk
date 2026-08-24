@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+      Android 11+ package visibility: to launch the Flute Terminal app by package and to
+      resolve whether it is installed, the SDK's host app must be able to "see" it.
+      The concrete package name/action is the deeplink contract owned by the terminal-app
+      team (ARISE-4283) — see deeplink/FluteDeeplinkContract.kt. Declared here as a query.
+    -->
+    <queries>
+        <package android:name="com.aurora.aurorapayment" />
+    </queries>
+
+</manifest>
