@@ -24,8 +24,17 @@ tasks.register<Zip>("packageDistribution") {
     description = "Zips a portable Maven repo (sdk + deeplink-contract) for manual partner hand-off."
     dependsOn(":sdk:publishReleasePublicationToDistRepository")
     dependsOn(":deeplink-contract:publishReleasePublicationToDistRepository")
-    from(layout.buildDirectory.dir("dist-repo"))
-    from("docs/DISTRIBUTION_README.md") { rename { "README.md" } }
-    archiveFileName.set("flute-terminal-sdk-$version.zip")
+    // Everything nests under a single folder named exactly what the integration guide tells the
+    // reader to register: `maven { url = uri("../flute-terminal-sdk") }`. Without it, extracting
+    // scatters `com/` into the current directory (command-line unzip) or produces a version-suffixed
+    // folder (macOS Archive Utility), and neither matches the documented path.
+    into("flute-terminal-sdk") {
+        from(layout.buildDirectory.dir("dist-repo"))
+        from("docs/DISTRIBUTION_README.md") { rename { "README.md" } }
+    }
+    // Named from the SDK's version, not the root project's — the SDK is what an integrator
+    // declares a dependency on, and the two are versioned independently (deeplink-contract is
+    // deliberately frozen). Using $version here labelled a 1.0.0 bundle as 0.1.0.
+    archiveFileName.set("flute-terminal-sdk-${project(":sdk").version}.zip")
     destinationDirectory.set(layout.buildDirectory.dir("distributions"))
 }

@@ -20,12 +20,18 @@ import org.junit.Before
 import org.junit.Test
 
 /**
- * Live contract smoke tests against the UAT environment.
+ * Live contract smoke tests against a running environment.
  *
- * Auto-skipped unless credentials are supplied via environment variables — they never run in a
- * plain `./gradlew test` or CI without secrets:
+ * The hosts come from environment variables rather than an [FluteTerminalConfig.Environment]
+ * constant: this artifact is published publicly, so Flute's pre-production hostnames are kept out
+ * of it and supplied by whoever runs the tests.
+ *
+ * Auto-skipped unless all four variables are set — they never run in a plain `./gradlew test` or in
+ * CI without secrets:
  * ```
- * FLUTE_UAT_CLIENT_ID=... FLUTE_UAT_CLIENT_SECRET=... ./gradlew :sdk:testDebugUnitTest \
+ * FLUTE_TEST_CLIENT_ID=...  FLUTE_TEST_CLIENT_SECRET=... \
+ * FLUTE_TEST_API_URL=...    FLUTE_TEST_OAUTH_URL=...     \
+ *     ./gradlew :sdk:testDebugUnitTest \
  *     --tests "com.flute.terminal.sdk.integration.UatContractSmokeTest"
  * ```
  * These validate the wire contracts (token grant, DTO field names, enum casing, error envelope)
@@ -33,8 +39,10 @@ import org.junit.Test
  */
 class UatContractSmokeTest {
 
-    private val clientId: String? = System.getenv("FLUTE_UAT_CLIENT_ID")
-    private val clientSecret: String? = System.getenv("FLUTE_UAT_CLIENT_SECRET")
+    private val clientId: String? = System.getenv("FLUTE_TEST_CLIENT_ID")
+    private val clientSecret: String? = System.getenv("FLUTE_TEST_CLIENT_SECRET")
+    private val apiUrl: String? = System.getenv("FLUTE_TEST_API_URL")
+    private val oauthUrl: String? = System.getenv("FLUTE_TEST_OAUTH_URL")
 
     private lateinit var apis: ApiFactory
     private lateinit var tokenProvider: TokenProvider
@@ -42,10 +50,16 @@ class UatContractSmokeTest {
     @Before
     fun setUp() {
         assumeTrue(
-            "FLUTE_UAT_CLIENT_ID / FLUTE_UAT_CLIENT_SECRET not set — skipping UAT smoke tests",
-            clientId != null && clientSecret != null,
+            "FLUTE_TEST_CLIENT_ID / _SECRET / _API_URL / _OAUTH_URL not all set — skipping smoke tests",
+            clientId != null && clientSecret != null && apiUrl != null && oauthUrl != null,
         )
-        val config = FluteTerminalConfig(environment = FluteTerminalConfig.Environment.UAT)
+        // SANDBOX only supplies the enum constant; both hosts are overridden, so nothing about
+        // Flute's internal environments is compiled into the published artifact.
+        val config = FluteTerminalConfig(
+            environment = FluteTerminalConfig.Environment.SANDBOX,
+            apiBaseUrlOverride = apiUrl,
+            identityBaseUrlOverride = oauthUrl,
+        )
         val store = InMemorySecureStore()
         val credentials = CredentialStore(store).apply { save(clientId!!, clientSecret!!) }
         apis = ApiFactory(config)
@@ -62,7 +76,7 @@ class UatContractSmokeTest {
     @Test
     fun `terminals list maps modes and connection status`() = runBlocking {
         val terminals = apiCall { apis.fluteApi.listTerminals(tokenProvider.bearer()) }.items.map(Mappers::toInfo)
-        assertTrue("expected at least one terminal on the UAT merchant", terminals.isNotEmpty())
+        assertTrue("expected at least one terminal on the test merchant", terminals.isNotEmpty())
         // Enum casing must map — no terminal should be UNKNOWN mode.
         assertTrue(terminals.all { it.mode != TerminalMode.UNKNOWN })
     }

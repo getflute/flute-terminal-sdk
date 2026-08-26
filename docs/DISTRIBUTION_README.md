@@ -55,4 +55,4 @@ report the SDK version and — for API errors — the `correlationId` from the e
 ### 1.0.0
 - Initial pilot package: deeplink payment initiation (`startPayment` / `startPaymentAutoResolve`),
   typed results with canonical API reconciliation, timeout + process-death recovery
-  (`checkPendingPayment`), terminal/payment-config discovery, UAT environment.
+  (`checkPendingPayment`), terminal/payment-config discovery, sandbox and production environments.

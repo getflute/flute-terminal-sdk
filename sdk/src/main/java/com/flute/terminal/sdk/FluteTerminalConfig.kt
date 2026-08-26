@@ -56,28 +56,16 @@ data class FluteTerminalConfig(
     /**
      * Target environment.
      *
-     * [SANDBOX] and [PRODUCTION] are the two partner-facing surfaces. They are one deployment
-     * separated by hostname: the API key carries an account kind, and using a sandbox key on the
-     * production host (or the reverse) is rejected. Sandbox is therefore where an ISV integrates
-     * without moving real money.
+     * The two partner-facing surfaces are one deployment separated by hostname: the API key carries
+     * an account kind, and using a sandbox key on the production host (or the reverse) is rejected.
+     * Sandbox is therefore where an ISV integrates without moving real money.
      *
-     * [DEV] and [UAT] are internal-only, for Flute QA against the arise-branded deployments while
-     * the SDK is in development. They are not offered to ISVs and come out of the published SDK
-     * before partner release.
+     * Flute's own pre-production environments are deliberately absent. This artifact is published
+     * publicly, so baking internal hostnames into it would advertise them to every consumer, and a
+     * published release cannot be withdrawn. Internal QA points at them through
+     * [apiBaseUrlOverride] / [identityBaseUrlOverride] instead.
      */
     enum class Environment(val identityBaseUrl: String, val apiBaseUrl: String) {
-        /** Internal only. Ahead of UAT — where newly shipped endpoints land first. */
-        DEV(
-            identityBaseUrl = "https://oauth.api.dev.flute.com",
-            apiBaseUrl = "https://api.dev.flute.com",
-        ),
-
-        /** Internal only. */
-        UAT(
-            identityBaseUrl = "https://oauth.api.uat.flute.com",
-            apiBaseUrl = "https://api.uat.flute.com",
-        ),
-
         /** Partner integration surface. Requires a sandbox-kind API key; no real money moves. */
         SANDBOX(
             identityBaseUrl = "https://sandbox.oauth.api.flute.com",

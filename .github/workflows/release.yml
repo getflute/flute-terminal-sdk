@@ -1,0 +1,97 @@
+name: Release
+
+# Tag-driven: pushing vX.Y.Z builds that commit, verifies it, and publishes the
+# integration package as a GitHub Release asset. workflow_dispatch is here so a
+# release can be re-cut without moving the tag.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to build and release (e.g. v1.0.0)'
+        required: true
+        type: string
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify & publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the release and upload its asset
+
+    steps:
+      - name: Check out the tagged commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+
+      # Everything an ISV would hit: unit tests, lint, and apiCheck. apiCheck is
+      # the one that matters most here — it fails the release if the public API
+      # drifted from sdk.api without an intentional apiDump.
+      - name: Verify (tests • lint • apiCheck)
+        run: ./gradlew build
+
+      - name: Package the integration bundle
+        run: ./gradlew packageDistribution
+
+      # The zip is named from the SDK's own version, which is what an integrator
+      # depends on. Read it back rather than trusting the tag, so a tag that does
+      # not match the built version fails here instead of shipping a mislabelled
+      # asset.
+      - name: Resolve the built artifact
+        id: artifact
+        run: |
+          set -u
+          zip=$(find build/distributions -name 'flute-terminal-sdk-*.zip' -type f | head -n 1)
+          if [[ -z "$zip" ]]; then
+            echo "::error::packageDistribution produced no zip in build/distributions"
+            exit 1
+          fi
+          version=$(basename "$zip" .zip | sed 's/^flute-terminal-sdk-//')
+          tag="${{ inputs.tag || github.ref_name }}"
+          if [[ "v$version" != "$tag" ]]; then
+            echo "::error::tag $tag does not match the built SDK version $version"
+            exit 1
+          fi
+          {
+            echo "zip=$zip"
+            echo "version=$version"
+            echo "tag=$tag"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ZIP: ${{ steps.artifact.outputs.zip }}
+          TAG: ${{ steps.artifact.outputs.tag }}
+          VERSION: ${{ steps.artifact.outputs.version }}
+        run: |
+          set -u
+          notes=$(cat <<'EOF'
+          Integration package for the Flute Terminal SDK.
+
+          Download the zip below, unzip it next to your project, and register the folder as a Maven
+          repository. Setup and usage are documented in the integration guide.
+          EOF
+          )
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ZIP" --clobber
+          else
+            gh release create "$TAG" "$ZIP" \
+              --title "$VERSION" \
+              --notes "$notes"
+          fi
