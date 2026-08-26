@@ -76,10 +76,8 @@ public final class com/flute/terminal/sdk/FluteTerminalConfig {
 }
 
 public final class com/flute/terminal/sdk/FluteTerminalConfig$Environment : java/lang/Enum {
-	public static final field DEV Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
 	public static final field PRODUCTION Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
 	public static final field SANDBOX Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
-	public static final field UAT Lcom/flute/terminal/sdk/FluteTerminalConfig$Environment;
 	public final fun getApiBaseUrl ()Ljava/lang/String;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getIdentityBaseUrl ()Ljava/lang/String;

@@ -49,17 +49,14 @@ REST flow, with one important difference:
 
 ### Environments
 
-| Environment | API base URL | OAuth base URL | Audience |
-|---|---|---|---|
-| `SANDBOX` | `https://sandbox.api.flute.com` | `https://sandbox.oauth.api.flute.com` | Partner integration |
-| `PRODUCTION` | `https://api.flute.com` | `https://oauth.api.flute.com` | Partner live |
-| `DEV` | `https://api.dev.flute.com` | `https://oauth.api.dev.flute.com` | Flute-internal |
-| `UAT` | `https://api.uat.flute.com` | `https://oauth.api.uat.flute.com` | Flute-internal |
+| Environment | API base URL | OAuth base URL |
+|---|---|---|
+| `SANDBOX` | `https://sandbox.api.flute.com` | `https://sandbox.oauth.api.flute.com` |
+| `PRODUCTION` | `https://api.flute.com` | `https://oauth.api.flute.com` |
 
 Integrate against `SANDBOX`. It runs the same deployment as production, separated by hostname, and
 your key's account kind decides which surface it may use — so no real money moves and the wire
-behaviour is identical to live. `DEV` and `UAT` exist for Flute's own QA and are not available to
-partners.
+behaviour is identical to live.
 
 > ⚠️ **Warning.** On `PRODUCTION`, every payment and refund is real — cards are charged and money
 > moves.
