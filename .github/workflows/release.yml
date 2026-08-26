@@ -25,6 +25,28 @@ jobs:
       contents: write # create the release and upload its asset
 
     steps:
+      # Resolve the tag before checkout. Given a ref that does not exist, actions/checkout retries a
+      # failing fetch three times and then reports only "git failed with exit code 1", which says
+      # nothing about the cause — a bare version like 1.0.0 in place of the tag v1.0.0 fails exactly
+      # that way. Fail here instead, naming the mistake.
+      - name: Resolve the tag
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          set -u
+          if ! gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            echo "::error::No tag '$TAG' in this repository."
+            if [[ "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "::error::That looks like a version. Tags carry a v prefix — try 'v$TAG'."
+            fi
+            echo "Tags available:"
+            gh api "repos/$GITHUB_REPOSITORY/tags" --jq '.[].name' | sed 's/^/  /'
+            exit 1
+          fi
+          echo "Building tag $TAG"
+
       - name: Check out the tagged commit
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
