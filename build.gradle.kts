@@ -26,6 +26,9 @@ tasks.register<Zip>("packageDistribution") {
     dependsOn(":deeplink-contract:publishReleasePublicationToDistRepository")
     from(layout.buildDirectory.dir("dist-repo"))
     from("docs/DISTRIBUTION_README.md") { rename { "README.md" } }
-    archiveFileName.set("flute-terminal-sdk-$version.zip")
+    // Named from the SDK's version, not the root project's — the SDK is what an integrator
+    // declares a dependency on, and the two are versioned independently (deeplink-contract is
+    // deliberately frozen). Using $version here labelled a 1.0.0 bundle as 0.1.0.
+    archiveFileName.set("flute-terminal-sdk-${project(":sdk").version}.zip")
     destinationDirectory.set(layout.buildDirectory.dir("distributions"))
 }
