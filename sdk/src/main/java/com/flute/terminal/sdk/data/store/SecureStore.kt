@@ -53,7 +53,12 @@ internal object StoreKeys {
     const val CREDENTIALS_SOURCE = "credentials_source"
     const val ACCESS_TOKEN = "access_token"
     const val TOKEN_EXPIRES_AT = "token_expires_at"
-    const val PAYMENT_CONFIG = "payment_config_json"
+    /**
+     * Versioned: a [com.flute.terminal.sdk.model.PaymentConfig] cached by 1.0.0 lacks the fields
+     * added in 1.0.1, and Gson would leave them null despite their non-null types. A new key
+     * makes the SDK ignore that old copy and fetch a fresh one.
+     */
+    const val PAYMENT_CONFIG = "payment_config_json_v2"
     const val PENDING_POS_TRANSACTION_ID = "pending_pos_transaction_id"
     const val PENDING_STARTED_AT = "pending_started_at"
 

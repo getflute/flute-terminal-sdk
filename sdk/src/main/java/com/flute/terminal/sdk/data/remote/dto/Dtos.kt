@@ -173,15 +173,26 @@ internal data class TerminalDto(
     @SerializedName("serialNumber") val serialNumber: String? = null,
 )
 
+/**
+ * `GET /v2/settings/payment-configuration`, or the legacy `GET /v2/settings/payment-config`.
+ * Each renamed field reads its current name and, through `alternate`, its legacy one, so either
+ * route fills the same object. Everything is nullable: Gson does not apply Kotlin defaults.
+ */
 internal data class PaymentConfigResponse(
-    @SerializedName("currency") val currency: String?,
+    @SerializedName(value = "currencyCode", alternate = ["currency"]) val currencyCode: String?,
+    @SerializedName(value = "merchantCompanyName", alternate = ["companyName"]) val merchantCompanyName: String?,
     @SerializedName("zeroCostProcessingOption") val zeroCostProcessingOption: String?,
-    @SerializedName("availablePaymentProcessors") val availablePaymentProcessors: List<ProcessorDto> = emptyList(),
+    @SerializedName("isTipsEnabled") val isTipsEnabled: Boolean?,
+    @SerializedName(value = "defaultTipOptions", alternate = ["defaultTipsOptions"])
+    val defaultTipOptions: List<java.math.BigDecimal>?,
+    @SerializedName("availablePaymentProcessors") val availablePaymentProcessors: List<ProcessorDto>?,
 )
 
 internal data class ProcessorDto(
     @SerializedName("paymentProcessorId") val paymentProcessorId: String,
-    @SerializedName("isDefault") val isDefault: Boolean = false,
+    @SerializedName("processorName") val processorName: String?,
+    @SerializedName(value = "processorType", alternate = ["type"]) val processorType: String?,
+    @SerializedName("isDefault") val isDefault: Boolean?,
 )
 
 /** `GET /v2/transactions/calculate-amount` — gateway-computed per-tender totals. */

@@ -83,7 +83,7 @@ class UatContractSmokeTest {
 
     @Test
     fun `payment config maps currency, ZCP and default processor`() = runBlocking {
-        val config = Mappers.toConfig(apiCall { apis.fluteApi.getPaymentConfig(tokenProvider.bearer()) })
+        val config = Mappers.toConfig(apiCall { apis.fluteApi.getPaymentConfiguration(tokenProvider.bearer()) })
         assertNotNull(config.currencyCode)
         assertTrue(config.zeroCostOption != ZeroCostOption.UNKNOWN)
         assertNotNull("merchant should expose a default processor", config.defaultProcessorId)
