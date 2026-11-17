@@ -26,7 +26,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.flute.terminal:sdk:1.0.0")
+    implementation("com.flute.terminal:sdk:1.0.1")
 }
 ```
 
@@ -51,6 +51,15 @@ Each package is immutable: a new drop always carries a new version number. If yo
 report the SDK version and — for API errors — the `correlationId` from the error details.
 
 ## Changelog
+
+### 1.0.1
+- Fixes an HTTP 404 during `initialize` and `startPayment` on gateways with the 2026-11-04 V2
+  Settings release: payment configuration is read from `GET /v2/settings/payment-configuration`,
+  falling back to the legacy `GET /v2/settings/payment-config` only when the new route returns 404.
+- Reads the renamed configuration fields (`currencyCode`, `merchantCompanyName`,
+  `defaultTipOptions`, `processorType`) and their legacy names, so either route fills the config.
+- `PaymentConfig` adds `merchantCompanyName`, `isTipsEnabled`, `defaultTipOptions` and
+  `processors` (`PaymentProcessor`: id, name, type, default flag). Existing fields are unchanged.
 
 ### 1.0.0
 - Initial pilot package: deeplink payment initiation (`startPayment` / `startPaymentAutoResolve`),

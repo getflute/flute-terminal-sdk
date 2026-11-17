@@ -7,7 +7,7 @@ plugins {
 // Published artifacts are immutable, so any change ships as a new version. Versioned per module
 // rather than repo-wide: deeplink-contract is a frozen set of Intent keys and stays at 0.1.0 —
 // bumping it would force a matching change in the terminal app for no reason.
-version = "1.0.0"
+version = "1.0.1"
 
 android {
     publishing {
