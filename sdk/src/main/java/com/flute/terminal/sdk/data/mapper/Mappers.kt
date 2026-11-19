@@ -13,6 +13,7 @@ import com.flute.terminal.sdk.model.CaptureMethod
 import com.flute.terminal.sdk.model.TenderAmount
 import com.flute.terminal.sdk.model.LinkedTransactionOutcome
 import com.flute.terminal.sdk.model.PaymentConfig
+import com.flute.terminal.sdk.model.PaymentProcessor
 import com.flute.terminal.sdk.model.PaymentRequest
 import com.flute.terminal.sdk.model.PosTransactionDetails
 import com.flute.terminal.sdk.model.PosTransactionRef
@@ -226,18 +227,32 @@ internal object Mappers {
         serialNumber = dto.serialNumber,
     )
 
-    fun toConfig(dto: PaymentConfigResponse) = PaymentConfig(
-        currencyCode = dto.currency,
-        zeroCostOption = when (dto.zeroCostProcessingOption?.lowercase()) {
-            "none" -> ZeroCostOption.NONE
-            "cashdiscount" -> ZeroCostOption.CASH_DISCOUNT
-            "dualpricing" -> ZeroCostOption.DUAL_PRICING
-            "surcharge" -> ZeroCostOption.SURCHARGE
-            else -> ZeroCostOption.UNKNOWN
-        },
-        defaultProcessorId = dto.availablePaymentProcessors.firstOrNull { it.isDefault }?.paymentProcessorId,
-        processorIds = dto.availablePaymentProcessors.map { it.paymentProcessorId },
-    )
+    fun toConfig(dto: PaymentConfigResponse): PaymentConfig {
+        val processors = dto.availablePaymentProcessors.orEmpty().map {
+            PaymentProcessor(
+                id = it.paymentProcessorId,
+                name = it.processorName,
+                type = it.processorType,
+                isDefault = it.isDefault == true,
+            )
+        }
+        return PaymentConfig(
+            currencyCode = dto.currencyCode,
+            zeroCostOption = when (dto.zeroCostProcessingOption?.lowercase()) {
+                "none" -> ZeroCostOption.NONE
+                "cashdiscount" -> ZeroCostOption.CASH_DISCOUNT
+                "dualpricing" -> ZeroCostOption.DUAL_PRICING
+                "surcharge" -> ZeroCostOption.SURCHARGE
+                else -> ZeroCostOption.UNKNOWN
+            },
+            defaultProcessorId = processors.firstOrNull { it.isDefault }?.id,
+            processorIds = processors.map { it.id },
+            merchantCompanyName = dto.merchantCompanyName,
+            isTipsEnabled = dto.isTipsEnabled == true,
+            defaultTipOptions = dto.defaultTipOptions.orEmpty(),
+            processors = processors,
+        )
+    }
 
     private fun CaptureMethod.toApi() = when (this) {
         CaptureMethod.AUTO -> "Auto"

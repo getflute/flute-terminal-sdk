@@ -42,7 +42,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.flute.terminal:sdk:1.0.0")
+    implementation("com.flute.terminal:sdk:1.0.1")
 }
 ```
 

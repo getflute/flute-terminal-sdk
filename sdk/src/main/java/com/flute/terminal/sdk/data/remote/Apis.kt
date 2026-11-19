@@ -122,8 +122,18 @@ internal interface FluteApi {
         @Query("serialNumber") serialNumber: String? = null,
     ): TerminalListResponse
 
+    /** Merchant payment configuration — the current route, used first. */
+    @GET("v2/settings/payment-configuration")
+    suspend fun getPaymentConfiguration(
+        @Header("Authorization") bearer: String,
+    ): PaymentConfigResponse
+
+    /**
+     * Route used before the 2026-11-04 V2 Settings release, removed from Sandbox by it. Called only
+     * when [getPaymentConfiguration] answers 404, for gateways that have not taken that release.
+     */
     @GET("v2/settings/payment-config")
-    suspend fun getPaymentConfig(
+    suspend fun getLegacyPaymentConfig(
         @Header("Authorization") bearer: String,
     ): PaymentConfigResponse
 

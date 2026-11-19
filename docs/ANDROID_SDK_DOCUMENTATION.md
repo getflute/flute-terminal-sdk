@@ -84,7 +84,7 @@ Then add the dependency to your app module:
 
 ```kotlin
 dependencies {
-    implementation("com.flute.terminal:sdk:1.0.0")
+    implementation("com.flute.terminal:sdk:1.0.1")
 }
 ```
 
@@ -330,7 +330,7 @@ All are `@JvmStatic` on `FluteTerminal` and deliver a `FluteCallback` on the mai
 | Method | Returns | Description |
 |---|---|---|
 | `fetchTerminals(callback)` | `List<TerminalInfo>` | Terminals on the merchant account, with online status. |
-| `fetchPaymentConfig(callback)` | `PaymentConfig` | Currency, zero-cost-processing option, processors. Live fetch. |
+| `fetchPaymentConfig(callback)` | `PaymentConfig` | Currency, zero-cost-processing option, merchant name, tip settings, processors. Live fetch. |
 | `deviceSerialNumber()` | `String?` | Serial the SDK resolved for this device. |
 
 > 📝 **Note.** Check `PaymentConfig.requiresPricingType` to decide whether `pricingType` must be set
@@ -394,4 +394,5 @@ FluteTerminal.checkPendingPayment { check ->
 
 | Version | Changes |
 |---|---|
+| 1.0.1 | Fixes an HTTP 404 during `initialize` and `startPayment` after the 2026-11-04 V2 Settings release: payment configuration now comes from `GET /v2/settings/payment-configuration`, with a fallback to the legacy `GET /v2/settings/payment-config` when the new route returns 404. Reads the renamed fields (`currencyCode`, `merchantCompanyName`, `defaultTipOptions`, `processorType`) and their legacy names. `PaymentConfig` adds `merchantCompanyName`, `isTipsEnabled`, `defaultTipOptions` and `processors`. |
 | 1.0.0 | First release. Payments and unreferenced refunds; result delivery with exactly-once callbacks; recovery after process death; capture, tip adjust, reversal, receipt reprint and share, and transaction lookup; terminal and payment-configuration discovery; SANDBOX and PRODUCTION environments; device-serial resolution via the Flute Terminal app. |

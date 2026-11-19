@@ -418,7 +418,7 @@ object FluteTerminal {
         }
     }
 
-    /** Merchant payment config (`GET /v2/settings/payment-config`). Async; result on the main thread. */
+    /** Merchant payment config (`GET /v2/settings/payment-configuration`). Async; result on the main thread. */
     @JvmStatic
     fun fetchPaymentConfig(callback: FluteCallback<PaymentConfig>) {
         val g = requireGraph()
